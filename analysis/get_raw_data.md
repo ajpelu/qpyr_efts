@@ -1,6 +1,6 @@
 ### Get raw data
 
-A query to obtain raw data by pixel (only pixels covering *Q. pyreanica* populations in Sierra Nevada)
+A query to obtain raw data by pixel (only pixels covering *Q. pyrenaica* populations in Sierra Nevada)
 
 ```sql 
 SELECT 
