@@ -4,7 +4,7 @@ author: "AJ Perez-Luque (@ajpelu)"
 date: "2016 February"
 output:  
   md_document:
-  variant: markdown_github
+    variant: markdown_github
 ---
   
 ## Read data 
@@ -12,8 +12,8 @@ output:
 ```{r wd, echo=FALSE}
 #---------------------------------
 # Set working directory 
-machine <- "/Users/ajpelu"
-# machine <- "/Users/ajpeluLap"
+#  machine <- "/Users/ajpelu"
+machine <- "/Users/ajpeluLap"
 
 di <- paste(machine, "/Dropbox/MS/MS_QUERCUS_ENVIRON/5_REANALYSIS/qpyr_efts", sep = "")
 #---------------------------------
@@ -22,9 +22,6 @@ di <- paste(machine, "/Dropbox/MS/MS_QUERCUS_ENVIRON/5_REANALYSIS/qpyr_efts", se
 ```{r packages}
 library("lubridate") 
 library("dplyr")
-
-# library("tidyr")
-# library("ggplot2")
 ```
 
 # Read and prepare data
@@ -87,8 +84,19 @@ sum(test$myevi) == dply_test$evi_mean
 ```{r}
 
 mes_max <- rawdata %>% 
-  select(iv_malla_modi_id, year, myevi, fecha, year, month) %>% 
+  select(iv_malla_modi_id, year, myevi, fecha, month) %>% 
   group_by(iv_malla_modi_id, year) %>%
-  slice(which.max(myevi)) 
+  slice(which.max(myevi)) %>%
+  ungroup %>%
+  mutate(date_max = fecha,
+         month_max = month) %>%
+  select(iv_malla_modi_id, year, date_max, month_max)
 
+
+# Joins dataframes
+evi_attributes <- dplyr::inner_join(x=eviyear, y=mes_max, by=c("iv_malla_modi_id", "year"))
+
+# Export dataframe
+write.csv(evi_attributes, file=paste(di, "/data/evi_attributes.csv", sep=""), row.names = FALSE)
 ```
+
