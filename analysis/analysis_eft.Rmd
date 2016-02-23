@@ -1,0 +1,162 @@
+---
+title: "EFT of Q. pyreanica"
+author: "AJ Perez-Luque (@ajpelu)"
+date: "2016 February"
+output:  
+  md_document:
+    variant: markdown_github
+---
+  
+## Read data 
+  
+```{r wd, echo=FALSE}
+#---------------------------------
+# Set working directory 
+#  machine <- "/Users/ajpelu"
+machine <- "/Users/ajpeluLap"
+
+di <- paste(machine, "/Dropbox/MS/MS_QUERCUS_ENVIRON/5_REANALYSIS/qpyr_efts", sep = "")
+#---------------------------------
+```
+
+```{r packages}
+library("plyr")
+library("dplyr")
+library("lubridate")
+```
+
+# Read data
+```{r}
+# Read data
+evi <- read.csv(file=paste(di, "/data/evi_attributes.csv", sep= ""), header = TRUE, sep = ',')
+```
+
+Classify the data according 4x4x4 (See Alcaraz et al. 2013)
+
+```{r}
+qu <- evi %>% group_by(year) %>%
+  mutate(q_evi_mean=ntile(evi_mean, 4),
+         q_evi_cv=ntile(evi_cv, 4),
+         n=n(), 
+         jday=lubridate::yday(date_max)) %>%
+  select(iv_malla_modi_id, year, q_evi_mean, q_evi_cv, n, date_max, jday) %>%
+  mutate(q_evi_meanL = mapvalues(q_evi_mean, 
+                          from=c(1,2,3,4), to = c("A","B", "C", "D")),
+         q_evi_cvL = mapvalues(q_evi_cv, 
+                          from=c(1,2,3,4), to = c("a","b", "c", "d")))
+
+#### POR AQUI VAS CANTINFLASSSSS
+# VI (1–4: spring, summer, autumn and winter).
+>81 <=173 --> 1
+>173 <=265 --> 2
+> 265 <=356 --> 3 
+> 356 and < 81 --> 4 
+
+
+
+
+qu$q_date_max <- ifelse(qu$jday )
+
+# Get julian day
+sp <-lubridate::yday(as.Date("2000-03-21"))
+su <- lubridate::yday(as.Date("2000-06-21"))
+au <-  lubridate::yday(as.Date("2000-09-21"))
+wi <- lubridate::yday(as.Date("2000-12-21"))
+
+season_julian <- c(sp,su,au,wi)
+
+
+
+
+
+# spring-summer-autum-winter (1->4)
+
+
+  
+ 
+y2 <- evi[evi$year == 2000,]
+
+# test
+quantile(y2$evi_mean, prob=.25)
+quantile(y2$evi_cv, prob=.25)
+
+
+subset(evi, iv_malla_modi_id=142799 & year=2000)
+
+y2$q <- ntile(y2$evi_mean,4)
+
+
+quantile(evi$evi_min, probs = seq(0, 1, 0.25)
+
+
+# Create variables of year and month 
+# Apply scale factor https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mod13q1 
+rawdata <- rawdata %>% 
+  mutate(myevi = evi * 0.0001,
+         year = lubridate::year(fecha),
+         month = lubridate::month(fecha))
+
+
+
+#------------------------ test
+# Pixels with negative evi values?
+# Pixels with positive evi values?
+rawdata %>% 
+  summarise(pixel_pos=sum(myevi >= 0),
+            pixel_neg=sum(myevi < 0),
+            pixels=n())
+#------------------------ End test
+
+
+### Get by pixel and year the EVI
+eviyear <- rawdata %>% 
+  group_by(iv_malla_modi_id, year) %>%
+  summarise(evi_min=min(myevi),
+            evi_max=max(myevi), 
+            evi_mean = sum(myevi[myevi >=0]),
+            evi_mean_all = sum(myevi), 
+            evi_cv = ((evi_max - evi_min) / evi_mean ))
+ 
+```
+
+## `TODO` Duda domingo ??? (minimo)
+
+```{r}
+#------------------------ test
+# Test by pixel e.g. 142799 
+test <- rawdata[rawdata$iv_malla_modi_id == 142799 & rawdata$year ==2001,]
+
+dply_test <- eviyear %>% 
+  filter(iv_malla_modi_id == 142799, year ==2001) %>%
+  select(evi_min, evi_mean, evi_max)
+
+# Is the pixel the same?? 
+unique(test$iv_malla_modi_id) == dply_test$iv_malla_modi_id
+
+# Are the minimun, maximun and mean values well computed?
+min(test$myevi) == dply_test$evi_min
+max(test$myevi) == dply_test$evi_max
+sum(test$myevi) == dply_test$evi_mean
+#------------------------ End test
+
+```
+
+```{r}
+
+mes_max <- rawdata %>% 
+  select(iv_malla_modi_id, year, myevi, fecha, month) %>% 
+  group_by(iv_malla_modi_id, year) %>%
+  slice(which.max(myevi)) %>%
+  ungroup %>%
+  mutate(date_max = fecha,
+         month_max = month) %>%
+  select(iv_malla_modi_id, year, date_max, month_max)
+
+
+# Joins dataframes
+evi_attributes <- dplyr::inner_join(x=eviyear, y=mes_max, by=c("iv_malla_modi_id", "year"))
+
+# Export dataframe
+write.csv(evi_attributes, file=paste(di, "/data/evi_attributes.csv", sep=""), row.names = FALSE)
+```
+
