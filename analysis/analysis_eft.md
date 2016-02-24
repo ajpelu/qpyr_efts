@@ -1,43 +1,51 @@
----
-title: "EFT of Q. pyreanica"
-author: "AJ Perez-Luque (@ajpelu)"
-date: "2016 February"
-output:  
-  md_document:
-    variant: markdown_github
----
-  
-## Read data 
-  
-```{r wd, echo=FALSE}
-#---------------------------------
-# Set working directory 
-machine <- "/Users/ajpelu"
-#machine <- "/Users/ajpeluLap"
+Read data
+---------
 
-di <- paste(machine, "/Dropbox/MS/MS_QUERCUS_ENVIRON/5_REANALYSIS/qpyr_efts", sep = "")
-#---------------------------------
-```
-
-```{r packages}
+``` r
 library("plyr")
 library("dplyr")
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:plyr':
+    ## 
+    ##     arrange, count, desc, failwith, id, mutate, rename, summarise,
+    ##     summarize
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
 library("lubridate")
 ```
 
-# Read data
-```{r}
+    ## Warning: package 'lubridate' was built under R version 3.2.3
+
+    ## 
+    ## Attaching package: 'lubridate'
+
+    ## The following object is masked from 'package:plyr':
+    ## 
+    ##     here
+
+Read data
+=========
+
+``` r
 # Read data
 evi <- read.csv(file=paste(di, "/data/evi_attributes.csv", sep= ""), header = TRUE, sep = ',')
 ```
 
-Classify the data according 4x4x4 (See Alcaraz et al. 2013): 
-* Primary production (*Annual EVI Mean*): ranging from A to D for low to high (increasing)
-* Seasonality (*CV EVI*): ranging from a to d for high (decreasing)
-* Phenological indicator (*Date of Maximun EVI*): 1–4: spring, summer, autumn and winter. 
+Classify the data according 4x4x4 (See Alcaraz et al. 2013): \* Primary production (*Annual EVI Mean*): ranging from A to D for low to high (increasing) \* Seasonality (*CV EVI*): ranging from a to d for high (decreasing) \* Phenological indicator (*Date of Maximun EVI*): 1–4: spring, summer, autumn and winter.
 
-```{r}
-
+``` r
 ## For Date of MAX, we used a julian day approach (with lubridate)
 # VI (1–4: spring, summer, autumn and winter).
 # >81 <=173 --> 1
@@ -86,18 +94,61 @@ testeft <- eft[eft$iv_malla_modi_id==142799,]
 
 # Mode Q max
 test$q_max
-Mode(test$q_max) == testeft$mq_max
-testeft$mq_max
+```
 
+    ##  [1] 1 2 1 3 2 1 1 1 1 4 1 3 2 3
+
+``` r
+Mode(test$q_max) == testeft$mq_max
+```
+
+    ## [1] TRUE
+
+``` r
+testeft$mq_max
+```
+
+    ## [1] 1
+
+``` r
 # Mode Q evi mean
 test$q_evi_mean
-Mode(test$q_evi_mean) == testeft$mq_evi_mean
-testeft$mq_evi_mean
+```
 
+    ##  [1] 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+
+``` r
+Mode(test$q_evi_mean) == testeft$mq_evi_mean
+```
+
+    ## [1] TRUE
+
+``` r
+testeft$mq_evi_mean
+```
+
+    ## [1] 2
+
+``` r
 # Mode Q evi cv
 test$q_evi_cv
+```
+
+    ##  [1] 2 2 2 3 2 3 1 3 2 1 2 2 3 2
+
+``` r
 Mode(test$q_evi_cv) == testeft$mq_evi_cv
+```
+
+    ## [1] TRUE
+
+``` r
 testeft$mq_evi_cv
+```
+
+    ## [1] 2
+
+``` r
 # --- End test 
 
 
@@ -115,7 +166,7 @@ write.csv(eft_final, file=paste(di, "/data/eft.csv", sep=""), row.names = FALSE)
 
 Create raster
 
-```{r}
+``` r
 x <- read.csv(file=paste(di, "/data/raw_iv.csv", sep= ""), header = TRUE, sep = ',')
 
 aux <- x %>% 
@@ -134,6 +185,11 @@ dfsp <- SpatialPointsDataFrame(coords = df[,c("lat", "lng")],
 
 # VAS POR AQUI CANTINFLAS 
 library(raster)
-
 ```
 
+    ## 
+    ## Attaching package: 'raster'
+
+    ## The following object is masked from 'package:dplyr':
+    ## 
+    ##     select
