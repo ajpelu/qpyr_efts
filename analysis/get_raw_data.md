@@ -24,4 +24,18 @@ WHERE
 
 Ouput result is saved as: `/data/raw_iv.csv`  
 
+### Get lat/long data for all ndvi of SN 
+
+```sql
+SELECT
+ iv.id, 
+ ST_X(ST_Centroid(iv.the_geom)) as lng,
+ ST_Y(ST_Centroid(iv.the_geom)) as lat
+FROM 
+ public.iv_malla_modis as iv;
+```
+
+Output result is stored as: `/data/coordinates_iv_modis.csv`
+
+
 
