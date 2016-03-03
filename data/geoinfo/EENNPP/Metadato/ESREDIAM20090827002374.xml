@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="REDIAM.XSL"?>
+<MD_Metadata>
+    <characterSet>006</characterSet>
+    <contact>
+      <CI_ResponsibleParty>
+        <contactInfo>
+          <CI_Contact>
+            <address>
+              <CI_Address>
+                <administrativeArea>Sevilla</administrativeArea>
+                <city>Sevilla</city>
+                <country>ES</country>
+                <deliveryPoint>Avda. Manuel Siurot, 50</deliveryPoint>
+                <electronicMailAddress>rediam.cmaot@juntadeandalucia.es</electronicMailAddress>
+                <postalCode>41071</postalCode>
+              </CI_Address>
+            </address>
+            <onlineResource>
+              <CI_OnlineResource>
+                <linkage>http://www.juntadeandalucia.es/medioambiente/rediam</linkage>
+              </CI_OnlineResource>
+            </onlineResource>
+            <phone>
+              <CI_Telephone>
+                <voice>955.00.34.00 / 955.00.35.00</voice>
+                <facsimile>955.00.37.75</facsimile>
+              </CI_Telephone>
+            </phone>
+          </CI_Contact>
+        </contactInfo>
+        <organisationName>Consejería de Medio Ambiente y Ordenación del Territorio. Junta de Andalucía</organisationName>
+        <positionName>Servicio de Evaluación y Análisis Ambiental</positionName>
+        <role>011</role>
+      </CI_ResponsibleParty>
+    </contact>
+    <dataQualityInfo>
+      <DQ_DataQuality>
+        <lineage>
+          <LI_Lineage>
+            <processStep>
+              <LI_ProcessStep/>
+            </processStep>
+            <source>
+              <LI_Source>
+                <description>Las distintas normativas que aprueban, amplían o ajustan la delimitación de los Delimitación de los Espacios Naturales Protegidos de Andalucía.</description>
+                <originalImagePath/>
+                <parameters/>
+                <observation/>
+              </LI_Source>
+            </source>
+            <statement>1º  Selección de la base de referencia para el levantamiento de información.  2º  Captura de información siguiendo los criterios de digitalización establecidos por parte del centro directivo competente. Elaboración del modelo de datos.  3º  Remisión de datos al Servicio de Información y Evaluación Ambiental para su integración en la Red de Información Ambiental de Andalucía (REDIAM).  4º  Integración de datos, control de calidad y validación. Comprobación de la estructura del contenido. Comprobación de la consistencia topológica.  5º  Validación por el Servicio de Coordinación y Gestión de RENPA  6º  Publicación de ficha de metadatos en el Catálogo de la REDIAM.                7º  Difusión de la información a través de Servicios OGC y descarga de la misma.</statement>
+          </LI_Lineage>
+        </lineage>
+        <report/>
+        <scope>
+          <DQ_Scope>
+            <level>005</level>
+            <extent>
+              <EX_Extent>
+                <description>Andalucía</description>
+              </EX_Extent>
+            </extent>
+          </DQ_Scope>
+        </scope>
+      </DQ_DataQuality>
+    </dataQualityInfo>
+    <dateStamp>2008/08/04</dateStamp>
+    <distributionInfo>
+      <MD_Distribution>
+        
+        <distributionFormat>
+          <MD_Format>
+            <name>Shapes</name>
+          </MD_Format>
+        </distributionFormat>
+        <distributionFormat>
+          <MD_Format>
+            <name>PDF</name>
+          </MD_Format>
+        </distributionFormat>
+        <distributionFormat>
+          <MD_Format>
+            <name>KML</name>
+          </MD_Format>
+        </distributionFormat>
+        
+        
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Servicio WMS</unitsOfDistribution>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>http://www.juntadeandalucia.es/medioambiente/mapwms/REDIAM_Espacios_Naturales_Protegidos?</linkage>
+                <name>REDIAM. WMS de Espacios Naturales Protegidos de Andalucía (EENNPP), 2015.</name>
+                <desc>Servicio de Mapas WMS correspondiente a los límites actualizados de los Espacios Naturales Protegidos de Andalucía (Parques Nacionales, Parques Naturales, Parajes Naturales, Parques Periurbanos, Monumentos Naturales, Reservas Naturales, Reservas Naturales Concertadas y Paisajes Protegidos), información actualizada a mayo de 2015. Además se recogen otras zonas asociadas bajo un régimen de protección (Zonas de Protección de las Reservas Naturales, de los Monumentos Naturales y del Parque Nacional de Doñana) y los territorios que se acogen a la figura de gestión Espacio Natural. Los límites incluidos son la restitución digital de los límites aprobados oficialmente mediante norma publicada en Boletín o Diario Oficial correspondiente, haciéndose mención a la norma que los aprueba.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Datos en descarga</unitsOfDistribution>
+            <transferSize>22,4</transferSize>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>www.juntadeandalucia.es/medioambiente/rediam/descargas_informacion_ambiental</linkage>
+                <name>Delimitación de los Espacios Naturales Protegidos de Andalucía, 2015  (EENNPP.tar.gz)</name>
+                <desc>Paquete de información ambiental descargable de forma directa (archivo comprimido *tar.gz), de los límites de los Espacios Naturales Protegidos de Andalucía (Parques Nacionales, Parques Naturales, Parajes Naturales, Parques Periurbanos, Monumentos Naturales, Reservas Naturales, Reservas Naturales Concertadas y Paisajes Protegidos), información actualizada a mayo de 2015. Además se recogen otras zonas asociadas bajo un régimen de protección (Zonas de Protección de las Reservas Naturales, de los Monumentos Naturales y del Parque Nacional de Doñana) y los territorios que se acogen a la figura de gestión Espacio Natural. Los límites incluidos son la restitución digital de los límites aprobados oficialmente mediante norma publicada en Boletín o Diario Oficial correspondiente, haciéndose mención a la norma que los aprueba. También se incluye archivo de simbología (*lyr) y modelo de datos.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Datos en descarga</unitsOfDistribution>
+            <transferSize>28,7</transferSize>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>www.juntadeandalucia.es/medioambiente/rediam/descargas_informacion_ambiental</linkage>
+                <name>Red de Espacios Naturales Protegidos de Andalucía (RENPA.tar.gz)</name>
+                <desc>Paquete de información ambiental descargable de forma directa (archivo comprimido *tar.gz), de los límites de la Red de Espacios Naturales Protegidos de Andalucía (RENPA). Incluye información sobre EENNPP autonómicos -Parques Nacionales y Naturales, Reservas, Parajes y Monumentos Naturales, Paisajes Protegidos, Parques Periurbanos, Reservas Naturales Concertadas- y figuras de protección europeas e internacionales; Red Natura 2000 -ZEPA, LIC, ZEC-, Geoparques, Reservas de la Biosfera, ZEPIM, Diploma Europeo, Patrimonio de la Humanidad y Humedales incluidos en la Lista Ramsar.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Servicio WMS</unitsOfDistribution>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>http://www.juntadeandalucia.es/medioambiente/mapwms/REDIAM_RENPA</linkage>
+                <name>REDIAM. WMS de Red de Espacios Naturales Protegidos de Andalucía (RENPA)</name>
+                <desc>Servicio de Mapas WMS correspondiente a los límites de la Red de Espacios Naturales Protegidos de Andalucía (RENPA). Incluye información sobre EENNPP autonómicos -Parques Nacionales y Naturales, Reservas, Parajes y Monumentos Naturales, Paisajes Protegidos, Parques Periurbanos, Reservas Naturales Concertadas- y figuras de protección europeas e internacionales; Red Natura 2000 -ZEPA, LIC, ZEC-, Geoparques, Reservas de la Biosfera, ZEPIM, Diploma Europeo, Patrimonio de la Humanidad y Humedales incluidos en la Lista Ramsar.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Aplicación Web</unitsOfDistribution>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>http://laboratoriorediam.cica.es/VisorHumedales/</linkage>
+                <name>Visor de Humedales de Andalucía</name>
+                <desc>Visualizador en web de Servicios de Mapas (WMS) de la la Red de Seguimiento y Evaluación de Humedales, Humedales RAMSAR, Inventario de Humedales de Andalucía (IHA), Catálogo de Humedales, Cuencas asociadas y Espacios Naturales Protegidos de Andalucía -Parques Nacionales, Parques Naturales, Parajes Naturales, Parques Periurbanos, Monumentos Naturales, Reservas Naturales, Reservas Naturales Concertadas y Paisajes Protegidos- y otras zonas asociadas bajo un régimen de protección (Zonas de Protección de las Reservas Naturales, de los Monumentos Naturales y del Parque Nacional de Doñana) y los territorios que se acogen a la figura de gestión Espacio Natural, sobre diversas bases de referencia (Google Maps, Bing, OpenStreetMap, Ortofotos de la Junta de Andalucía). Incluye un buscador de topónimos y otras funcionalidades detalladas en el Manual de usuario.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Ficha WMS</unitsOfDistribution>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>"http://www.juntadeandalucia.es/medioambiente/site/rediam/menuitem.04dc44281e5d53cf8ca78ca731525ea0/?vgnextoid=86fb1cab5bf59210VgnVCM1000001325e50aRCRD&amp;vgnextchannel=66ffdb27eb364410VgnVCM1000001325e50aRCRD&amp;vgnextfmt=rediam&amp;lr=lang_es"</linkage>
+                <name>Ficha descriptiva del WMS de Espacios Naturales Protegidos (EENNPP) autonómicos, información actualizada</name>
+                <desc>Ficha descriptiva del Servicio de Mapas WMS correspondiente a los límites de los Espacios Naturales Protegidos de Andalucía (Parques Nacionales, Parques Naturales, Parajes Naturales, Parques Periurbanos, Monumentos Naturales, Reservas Naturales, Reservas Naturales Concertadas y Paisajes Protegidos), información actualizada a mayo de 2015. Además se recogen otras zonas asociadas bajo un régimen de protección (Zonas de Protección de las Reservas Naturales, de los Monumentos Naturales y del Parque Nacional de Doñana) y los territorios que se acogen a la figura de gestión Espacio Natural. Los límites incluidos son la restitución digital de los límites aprobados oficialmente mediante norma publicada en Boletín o Diario Oficial correspondiente, haciéndose mención a la norma que los aprueba.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Kml</unitsOfDistribution>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>http://www.juntadeandalucia.es/medioambiente/portal_web/rediam/productos/ServiciosOGC/KML/Cartografia_ambiental/Patrimonio_natural/eennpp.kml</linkage>
+                <name>KML Espacios Naturales Protegidos de Andalucía (eennpp.kml)</name>
+                <desc>KML del Servicio WMS correspondiente a los límites de los Espacios Naturales Protegidos de Andalucía (Parques Nacionales, Parques Naturales, Parajes Naturales, Parques Periurbanos, Monumentos Naturales, Reservas Naturales, Reservas Naturales Concertadas y Paisajes Protegidos), información actualizada a mayo de 2015. Además se recogen otras zonas asociadas bajo un régimen de protección (Zonas de Protección de las Reservas Naturales, de los Monumentos Naturales y del Parque Nacional de Doñana) y los territorios que se acogen a la figura de gestión Espacio Natural. Los límites incluidos son la restitución digital de los límites aprobados oficialmente mediante norma publicada en Boletín o Diario Oficial correspondiente, haciéndose mención a la norma que los aprueba.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Ficha WMS</unitsOfDistribution>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>"http://www.juntadeandalucia.es/medioambiente/site/rediam/menuitem.04dc44281e5d53cf8ca78ca731525ea0/?vgnextoid=b2460c33f6959210VgnVCM1000001325e50aRCRD&amp;vgnextchannel=66ffdb27eb364410VgnVCM1000001325e50aRCRD&amp;vgnextfmt=rediam&amp;lr=lang_es"</linkage>
+                <name>Ficha descriptiva del WMS de la Red de Espacios Naturales Protegidos de Andalucía (RENPA)</name>
+                <desc>Ficha descriptiva del Servicio WMS correspondiente a los límites de la Red de Espacios Naturales Protegidos de Andalucía (RENPA). Incluye información sobre EENNPP autonómicos -Parques Nacionales y Naturales, Reservas, Parajes y Monumentos Naturales, Paisajes Protegidos, Parques Periurbanos, Reservas Naturales Concertadas- y figuras de protección europeas e internacionales; Red Natura 2000 -ZEPA, LIC, ZEC-, Geoparques, Reservas de la Biosfera, ZEPIM, Diploma Europeo, Patrimonio de la Humanidad y Humedales incluidos en la Lista Ramsar.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Kml</unitsOfDistribution>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>http://www.juntadeandalucia.es/medioambiente/portal_web/rediam/productos/ServiciosOGC/KML/Cartografia_ambiental/Patrimonio_natural/renpa.kml</linkage>
+                <name>KML de la Red de Espacios Naturales Protegidos de Andalucía (renpa.kml)</name>
+                <desc>KML del Servicio WMS correspondiente a la Red de Espacios Naturales Protegidos de Andalucía (RENPA). Incluye información sobre EENNPP autonómicos -Parques Nacionales y Naturales, Reservas, Parajes y Monumentos Naturales, Paisajes Protegidos, Parques Periurbanos, Reservas Naturales Concertadas- y figuras de protección europeas e internacionales; Red Natura 2000 -ZEPA, LIC, ZEC-, Geoparques, Reservas de la Biosfera, ZEPIM, Diploma Europeo, Patrimonio de la Humanidad y Humedales incluidos en la Lista Ramsar.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Servicio WFS</unitsOfDistribution>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>http://www.juntadeandalucia.es/medioambiente/mapwms/REDIAM_WFS_Patrimonio_Natural?</linkage>
+                <name>WFS Patrimonio Natural de Andalucía</name>
+                <desc>Servicio de entidades (WFS) de Patrimonio Natural. Incluye la información espacial de la Red de Espacios Naturales Protegidos de Andalucía (RENPA): EENNPP autonómicos -Parques Nacionales y Naturales, Reservas, Parajes y Monumentos Naturales, Paisajes Protegidos, Parques Periurbanos, Reservas Naturales Concertadas- y figuras de protección europeas e internacionales; Red Natura 2000 -ZEPA, LIC, ZEC-, Geoparques, Reservas de la Biosfera, ZEPIM, Diploma Europeo, Patrimonio de la Humanidad, Humedales incluidos en la Lista Ramsar, Inventario de Humedales de Andalucía, zonificación de los Planes de Ordenación de Recursos Naturales (PORN), y Catálogo de Montes Públicos de Andalucía.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Ficha WFS</unitsOfDistribution>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>"http://www.juntadeandalucia.es/medioambiente/site/rediam/menuitem.04dc44281e5d53cf8ca78ca731525ea0/?vgnextoid=78c231f176e4d210VgnVCM2000000624e50aRCRD&amp;vgnextchannel=cb43d61d8470f210VgnVCM2000000624e50aRCRD&amp;vgnextfmt=rediam&amp;lr=lang_es"</linkage>
+                <name>Ficha descriptiva del WFS de Patrimonio Natural de Andalucía</name>
+                <desc>Ficha descriptiva del Servicio WFS de Patrimonio Natural. Incluye la información espacial de la Red de Espacios Naturales Protegidos de Andalucía (RENPA): EENNPP autonómicos -Parques Nacionales y Naturales, Reservas, Parajes y Monumentos Naturales, Paisajes Protegidos, Parques Periurbanos, Reservas Naturales Concertadas- y figuras de protección europeas e internacionales; Red Natura 2000 -ZEPA, LIC, ZEC-, Geoparques, Reservas de la Biosfera, ZEPIM, Diploma Europeo, Patrimonio de la Humanidad, Humedales incluidos en la Lista Ramsar, Inventario de Humedales de Andalucía, zonificación de los Planes de Ordenación de Recursos Naturales (PORN), y Catálogo de Montes Públicos de Andalucía.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Aplicación Web</unitsOfDistribution>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>http://laboratoriorediam.cica.es/VisorGenerico/</linkage>
+                <name>Visualizador básico Servicios OGC Rediam</name>
+                <desc>Visualizador en web de Servicios de Mapas (WMS) sobre la información espacial de la Red de Espacios Naturales Protegidos de Andalucía (RENPA): EENNPP autonómicos -Parques Nacionales y Naturales, Reservas, Parajes y Monumentos Naturales, Paisajes Protegidos, Parques Periurbanos, Reservas Naturales Concertadas- y figuras de protección europeas e internacionales; Red Natura 2000 -ZEPA, LIC, ZEC-, Geoparques, Reservas de la Biosfera, ZEPIM, Diploma Europeo, Patrimonio de la Humanidad y Humedales incluidos en la Lista Ramsar, la zonificación de los Planes de Ordenación de Recursos Naturales (PORN), el Inventario de Vías Pecuarias y el Catálogo de Montes Públicos de Andalucía, sobre diversas bases de referencia (Google Maps, Bing, OpenStreetMap, Ortofotos de la Junta de Andalucía). Incluye un buscador de topónimos, un localizador de parcelas de Catastro y otras funcionalidades detalladas en el Manual de usuario.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Aplicación Web</unitsOfDistribution>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>www.juntadeandalucia.es/medioambiente/ventanadelvisitante</linkage>
+                <name>Ventana del Visitante de Espacios Naturales</name>
+                <desc>Portal Web desde el que se pueden planificar visitas a los Espacios Naturales Protegidos de Andalucía. Incluye datos sobre los puntos de información, actividades, lugares por los que pasear, miradores, etc., así como un Visualizador con buscador por Espacio Natural Protegido o equipamiento de uso público.</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+        <transferOptions>
+          <MD_DigitalTransferOption>
+            <unitsOfDistribution>Publicación Web</unitsOfDistribution>
+            <onLine>
+              <CI_OnlineResource>
+                <linkage>http://www.juntadeandalucia.es/medioambiente/RENPA</linkage>
+                <name>Red de Espacios Naturales Protegidos de Andalucía (RENPA)</name>
+                <desc>Apartado del sitio Web de la Consejería de Medio Ambiente y Ordenación del Territorio que incluye información individualizada por cada una de las figuras de protección que configuran la Red de Espacios Naturales Protegidos de Andalucía (RENPA).</desc>
+              </CI_OnlineResource>
+            </onLine>
+          </MD_DigitalTransferOption>
+        </transferOptions>
+      </MD_Distribution>
+    </distributionInfo>
+    <fileIdentifier>ESREDIAM20090827002374.xml</fileIdentifier>
+    <hierarchyLevel>005</hierarchyLevel>
+    <identificationInfo>
+      <MD_DataIdentification>
+        <abstract>Capa poligonal actualizada de los Espacios Naturales Protegidos de Andalucía (Parques Nacionales, Parques Naturales, Parajes Naturales, Parques Periurbanos, Monumentos Naturales, Reservas Naturales, Reservas Naturales Concertadas y Paisajes Protegidos), información actualizada a mayo de 2015. Además se recogen otras zonas asociadas bajo un régimen de protección (Zonas de Protección de las Reservas Naturales, de los Monumentos Naturales y del Parque Nacional de Doñana) y los territorios que se acogen a la figura de gestión Espacio Natural. Los límites incluidos son la restitución digital de los límites aprobados oficialmente mediante norma publicada en Boletín o Diario Oficial correspondiente, haciéndose mención a la norma que los aprueba.</abstract>
+        <purpose>Conocer la delimitación de los Espacios Naturales Protegidos (EENNPP) de Andalucía así como sus principales caracteríticas.</purpose>
+        <spatialRepresentationType>001</spatialRepresentationType>
+        <characterSet>006</characterSet>
+        <status>Completado</status>
+        <citation>
+          <CI_Citation>
+            <title>Límites de los Espacios Naturales Protegidos de Andalucía (EENNPP): 2015</title>
+            <presentationForm>005</presentationForm>
+            <dateCreacion>
+              <CI_Date>
+                <dateType>001</dateType>
+                <dateValue>2002/11/06</dateValue>
+              </CI_Date>
+            </dateCreacion>
+            <dateRevision>
+              <CI_Date>
+                <dateType>003</dateType>
+                <dateValue>2015/05/19</dateValue>
+              </CI_Date>
+            </dateRevision>
+          </CI_Citation>
+        </citation>
+        <category>
+          <topicCategory>003</topicCategory>
+          <topicCategory>007</topicCategory>
+        </category>
+        <pointOfContact>
+          <CI_ResponsibleParty>
+            <contactInfo>
+              <CI_Contact>
+                <address>
+                  <CI_Address>
+                    <administrativeArea>Sevilla</administrativeArea>
+                    <city>Sevilla</city>
+                    <country>ES</country>
+                    <deliveryPoint>Avda. Manuel Siurot, 50</deliveryPoint>
+                    <electronicMailAddress>dgeennpc.cmaot@juntadeandalucia.es</electronicMailAddress>
+                    <postalCode>41071</postalCode>
+                  </CI_Address>
+                </address>
+                <onlineResource>
+                  <CI_OnlineResource>
+                    <linkage>http://www.juntadeandalucia.es/medioambiente/</linkage>
+                  </CI_OnlineResource>
+                </onlineResource>
+                <phone>
+                  <CI_Telephone>
+                    <voice>955.00.34.00 / 955.00.35.00</voice>
+                    <facsimile>955.00.37.75</facsimile>
+                  </CI_Telephone>
+                </phone>
+              </CI_Contact>
+            </contactInfo>
+            <organisationName>Consejería de Medio Ambiente y Ordenación del Territorio. Junta de Andalucía</organisationName>
+            <positionName>Servicio de Coordinación y Gestión RENPA</positionName>
+            <role>011</role>
+          </CI_ResponsibleParty>
+        </pointOfContact>
+        <descriptiveKeywords>
+          <MD_Keywords>
+            <keyword>Límite administrativo</keyword>
+            <keyword>Espacios protegidos</keyword>
+            <keyword>Protección de áreas naturales</keyword>
+            <type>005</type>
+            <thesaurusName>
+              <CI_Citation>
+                <title>GEMET</title>
+              </CI_Citation>
+            </thesaurusName>
+          </MD_Keywords>
+        </descriptiveKeywords>
+        <extent>
+          <geographicElement>
+            <EX_GeographicBoundingBox>
+              <eastBoundLongitude>-1.626074</eastBoundLongitude>
+              <northBoundLatitude>38.730145</northBoundLatitude>
+              <southBoundLatitude>35.938928</southBoundLatitude>
+              <westBoundLongitude>-7.521414</westBoundLongitude>
+            </EX_GeographicBoundingBox>
+            <EX_GeographicDescription>
+              <geographicIdentifier>
+                <MD_Identifier>
+                  <code>Andalucía</code>
+                </MD_Identifier>
+              </geographicIdentifier>
+            </EX_GeographicDescription>
+          </geographicElement>
+        </extent>
+        <resourceConstraints>
+          <MD_LegalConstraints>
+            <otherConstraints/>
+          </MD_LegalConstraints>
+        </resourceConstraints>
+        <spatialResolution>
+          <MD_Resolution>
+            <distance>
+              <Distance>
+                <value/>
+                <uom>
+                  <uomLength>
+                    <uomName/>
+                  </uomLength>
+                </uom>
+              </Distance>
+            </distance>
+            <equivalentScale>
+              <MD_RepresentativeFraction>
+                <denominator>10.000 - 50.000</denominator>
+              </MD_RepresentativeFraction>
+            </equivalentScale>
+          </MD_Resolution>
+        </spatialResolution>
+        <language>spa</language>
+      </MD_DataIdentification>
+    </identificationInfo>
+    <language>spa</language>
+    <metadataStandardName>ISO 19115 "NEM"</metadataStandardName>
+    <metadataStandardVersion>2003 "1.0"</metadataStandardVersion>
+    
+    
+    <referenceSystemInfo>
+      <MD_ReferenceSystem>
+        <referenceSystemIdentifier>EPSG:25830</referenceSystemIdentifier>
+      </MD_ReferenceSystem>
+      <projection>
+        <type/>
+        <datum/>
+        <units/>
+        <huso/>
+      </projection>
+      <elipsoide/>
+      <esferoide/>
+    </referenceSystemInfo>
+    <referenceSystemInfo>
+      <MD_ReferenceSystem>
+        <referenceSystemIdentifier>EPSG:23030</referenceSystemIdentifier>
+      </MD_ReferenceSystem>
+    </referenceSystemInfo>
+    
+    
+    
+    
+    
+  </MD_Metadata>

@@ -1,0 +1,71 @@
+LÍMITES DE LOS ESPACIOS NATURALES PROTEGIDOS EN ANDALUCÍA (EENNPP): 2015 
+
+Fecha de creación del paquete: 02/07/2015
+Fecha de última actualización del paquete: 02/07/2015
+Fecha de última actualización de la información: 19/05/2015
+
+CONTENIDO:
+
+Carpeta Documentos
+	Escaneado de los Croquis con la delimitación oficial del espacio recogida en la Ley 2/89, para aquellas Reservas y Parajes Naturales que no disponen de  Decreto de Ordenación (P.O.R.N.) hasta la fecha.  
+
+
+Carpeta InfGeográfica
+
+          InfVectorial
+                  Shapes
+                     ED50_30
+                              EENNPP.shp
+                     ETRS89_30
+                              EENNPP.shp
+
+
+Carpeta InfAuxiliar
+	
+	Layer:
+		EENNPP_Andalucia.lyr
+
+Carpeta Metadatos
+
+	ESREDIAM20090827002374.xml
+        Límites de los Espacios Naturales Protegidos de Andalucía (EENNPP): 2015
+
+
+Carpeta ModeloDatos
+	
+	MdD_EENNPP_2015.pdf
+
+
+OBSERVACIONES:
+
+Espacios Naturales Protegidos de Andalucía (Parques Nacionales, Parques
+Naturales, Parajes Naturales, Parques Periurbanos, Monumentos Naturales,
+Reservas Naturales, Reservas Naturales Concertadas y Paisajes Protegidos),
+información actualizada a mayo de 2015. Además se recogen otras zonas
+asociadas bajo un régimen de protección (Zonas de Protección de las Reservas
+Naturales, de los Monumentos Naturales y del Parque Nacional de Doñana) y los
+territorios que se acogen a la figura de gestión Espacio Natural.
+
+Los límites incluidos proceden de dos fuentes de datos distintas:
+1) En caso de que se haya publicado en BOJA dicho límite con un formato
+suficiente para su interpretación digital, el límite representado es una restitución
+digital de los límites aprobados oficialmente mediante norma publicada en
+Boletín o Diario Oficial correspondiente, haciéndose mención a la norma que los
+aprueba.
+
+2) En los espacios cuyo límite legal está constituido por una cartografía analógica
+de escasa precisión (en los que figura en el campo Formato Legal como Croquis) o
+ni siquiera exista ésta (en los que figura en el campo Formato Legal como “No
+existe”), el límite representado es una asimilación a:
+• Delimitación de la capa Red Natura 2000, siempre que exista Espacio
+Protegido Red Natura 2000 homólogo.
+• Ajuste a la descripción literal de los límites y la realidad territorial, en
+caso de que no exista Espacio Protegido Red Natura 2000 homólogo.
+En ambos casos de esta última opción, los límites están actualmente en revisión,
+carecen de validez legal y su uso es sólo aproximado.
+Esta distinción se recoge en el campo "CARÁCTER" de la capa: sólo los espacios
+cuyo valor sea “Restitución digital” tienen límite digital de acuerdo a lo publicado
+en Boletín Oficial -opción 1)-. Los límites digitales en revisión (CARÁCTER=En
+tramitación) están asimilados a las dos posibilidades descritas -opción2)-. Para
+conocer la representación oficial de los límites de estos EENNPP remitirse a los
+Croquis escaneados incluidos en la carpeta Documentos.
