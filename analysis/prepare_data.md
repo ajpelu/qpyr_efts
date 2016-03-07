@@ -13,15 +13,15 @@ library("dplyr")
 
     ## 
     ## Attaching package: 'dplyr'
-    ## 
+
     ## The following objects are masked from 'package:lubridate':
     ## 
     ##     intersect, setdiff, union
-    ## 
+
     ## The following objects are masked from 'package:stats':
     ## 
     ##     filter, lag
-    ## 
+
     ## The following objects are masked from 'package:base':
     ## 
     ##     intersect, setdiff, setequal, union
@@ -56,8 +56,17 @@ rawdata %>%
 
 ``` r
 #------------------------ End test
+```
 
+Get evi attributes
+------------------
 
+-   EVI\_min
+-   EVI\_max
+-   EVI\_mean `$TODO` (Duda Domingo, negative values)
+-   EVI\_cv
+
+``` r
 ### Get by pixel and year the EVI
 eviyear <- rawdata %>% 
   group_by(iv_malla_modi_id, year) %>%
@@ -68,8 +77,7 @@ eviyear <- rawdata %>%
             evi_cv = ((evi_max - evi_min) / evi_mean ))
 ```
 
-`TODO` Duda domingo ??? (minimo)
---------------------------------
+***Some test***
 
 ``` r
 #------------------------ test
@@ -109,6 +117,11 @@ sum(test$myevi) == dply_test$evi_mean
 #------------------------ End test
 ```
 
+Get date of max
+---------------
+
+Get date of max and join
+
 ``` r
 mes_max <- rawdata %>% 
   select(iv_malla_modi_id, year, myevi, fecha, month) %>% 
@@ -125,4 +138,38 @@ evi_attributes <- dplyr::inner_join(x=eviyear, y=mes_max, by=c("iv_malla_modi_id
 
 # Export dataframe
 write.csv(evi_attributes, file=paste(di, "/data/evi_attributes.csv", sep=""), row.names = FALSE)
+```
+
+Approach two:
+-------------
+
+-   Get min, max, date of min and date of max
+
+``` r
+# Date of max
+date_max <- rawdata %>% 
+  select(iv_malla_modi_id, year, myevi, fecha) %>% 
+  group_by(iv_malla_modi_id, year) %>%
+  slice(which.max(myevi)) %>%
+  ungroup %>%
+  mutate(date_max = fecha) %>%
+  select(iv_malla_modi_id, year, date_max)
+
+# Date of min
+date_min <- rawdata %>% 
+  select(iv_malla_modi_id, year, myevi, fecha) %>% 
+  group_by(iv_malla_modi_id, year) %>%
+  slice(which.min(myevi)) %>%
+  ungroup %>%
+  mutate(date_min = fecha) %>%
+  select(iv_malla_modi_id, year, date_min)
+
+
+# Joins dataframes
+dates <- dplyr::inner_join(x=date_min, y=date_max, by=c("iv_malla_modi_id", "year"))
+
+evi_attributes_all <- dplyr::inner_join(x=eviyear, y=dates, by=c("iv_malla_modi_id", "year"))
+
+# Export dataframe
+write.csv(evi_attributes_all, file=paste(di, "/data/evi_attributes_all.csv", sep=""), row.names = FALSE)
 ```
