@@ -32,6 +32,7 @@ evi <- read.csv(file=paste(di, "/data/evi_attributes.csv", sep= ""), header = TR
 ```
 
 Classify the data according 4x4x4 (See Alcaraz et al. 2013): 
+
 * Primary production (*Annual EVI Mean*): ranging from A to D for low to high (increasing)
 * Seasonality (*CV EVI*): ranging from a to d for high (decreasing)
 * Phenological indicator (*Date of Maximun EVI*): 1–4: spring, summer, autumn and winter. 
@@ -114,6 +115,22 @@ write.csv(eft_final, file=paste(di, "/data/eft.csv", sep=""), row.names = FALSE)
 ```
 
 
+
+## Second approach 
+
+Use several attributes of EVI and not the EFTs classification (after Domingo meeting). See Dionisio et al. 
+
+```{r}
+
+u <- evi %>% group_by(year) %>%
+  mutate(q_evi_mean=ntile(evi_mean, 4),
+         q_evi_cv=ntile(evi_cv, 4),
+         n=n(), 
+         jday=lubridate::yday(date_max)) %>%
+  select(iv_malla_modi_id, year, q_evi_mean, q_evi_cv, n, date_max, jday) %>% 
+  mutate(q_max = ifelse(jday > 81 & jday <= 173, 1,
+                        ifelse(jday > 173 & jday <= 265, 2, 
+                               ifelse(jday > 265 & jday <= 356, 3, 4))))  
 
 
 
