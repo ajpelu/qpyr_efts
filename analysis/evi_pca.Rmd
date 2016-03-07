@@ -1,0 +1,404 @@
+---
+title: "PCA of EVI attributes of Q. pyreanica"
+author: "AJ Perez-Luque (@ajpelu)"
+date: "2016 March"
+output:  
+  md_document:
+    variant: markdown_github
+---
+  
+## Read data 
+  
+```{r wd, echo=FALSE}
+#---------------------------------
+# Set working directory 
+machine <- "/Users/ajpelu"
+# machine <- "/Users/ajpeluLap"
+
+di <- paste(machine, "/Dropbox/MS/MS_QUERCUS_ENVIRON/5_REANALYSIS/qpyr_efts", sep = "")
+#---------------------------------
+```
+
+```{r packages, warning=FALSE}
+library("plyr")
+library("dplyr")
+library("lubridate")
+```
+
+```{r}
+# Read data
+evi <- read.csv(file=paste(di, "/data/evi_attributes_all.csv", sep= ""), header = TRUE, sep = ',')
+rawdata <- read.csv(file=paste(di, "/data/raw_iv.csv", sep= ""), header = TRUE, sep = ',')
+```
+
+```{r}
+# Prepare data
+## For dates we used a julian day approach (with lubridate)
+evi <- evi %>% 
+  mutate(jd_min = lubridate::yday(as.Date(date_min)),
+         jd_max = lubridate::yday(as.Date(date_max)))
+
+
+
+## Convert to hydrological day
+# What is the julian day of the 01-Oct for the period  
+aux <- numeric()
+years <- seq(2000, 2013, 1)
+for (i in years){
+x <- lubridate::yday(as.Date(paste(i,"-10-01", sep="")))
+aux <- c(aux, x)
+} 
+
+star_hyear <- median(aux)
+star_hyear
+
+# we consider 366 
+# Create two variables with hydrological dates
+evi <- evi %>% 
+  mutate(hd_min = ifelse(jd_min > 273, jd_min - 273, jd_min + 92),
+         hd_max = ifelse(jd_max > 273, jd_max - 273, jd_max + 92))
+
+# Get coordinates and pob 
+evi_aux <- rawdata %>% select(iv_malla_modi_id, lng, lat, poblacion) %>%
+  group_by(iv_malla_modi_id) %>% unique()
+
+
+# Join dataframes 
+evi <- evi %>% inner_join(evi_aux, by="iv_malla_modi_id") 
+
+```
+
+# PCA
+```{r}
+# Select variables 
+df_pca_evi <- evi %>% select(poblacion, evi_mean, evi_min, evi_max, jd_min, jd_max, evi_cv)
+
+# PCA evi 
+pca_evi <- prcomp(df_pca_evi[,-1], scale=TRUE)
+
+# Eigenvalues 
+# Los eigenvalues es sd^2 
+ev <- (pca_evi$sdev)^2
+
+
+# Obtener tabla de importancia de los ejes
+summary(pca_evi)
+
+
+
+# Plot 
+library(pca3d)
+pca3d(pca_evi, group = df_pca_evi[,1])
+
+
+
+
+
+
+
+
+## Second approach 
+
+Use several attributes of EVI and not the EFTs classification (after Domingo meeting). See Dionisio et al. 
+
+```{r}
+
+u <- evi %>% group_by(year) %>%
+  mutate(q_evi_mean=ntile(evi_mean, 4),
+         q_evi_cv=ntile(evi_cv, 4),
+         n=n(), 
+         jday=lubridate::yday(date_max)) %>%
+  select(iv_malla_modi_id, year, q_evi_mean, q_evi_cv, n, date_max, jday) %>% 
+  mutate(q_max = ifelse(jday > 81 & jday <= 173, 1,
+                        ifelse(jday > 173 & jday <= 265, 2, 
+                               ifelse(jday > 265 & jday <= 356, 3, 4))))  
+
+
+
+
+
+Create raster
+
+```{r}
+library(sp)
+x <- read.csv(file=paste(di, "/data/raw_iv.csv", sep= ""), header = TRUE, sep = ',')
+
+aux <- x %>% 
+  group_by(iv_malla_modi_id) %>%
+  dplyr::select(iv_malla_modi_id, lng, lat, poblacion) 
+
+df <- as.data.frame(dplyr::inner_join(aux, eft_final, by="iv_malla_modi_id"))
+
+
+## definimos las coordenadas de los puntos
+coordinates(df) <- ~lng+lat
+## definimos el sistema de coordenadas WGS84
+proj4string(df) <- CRS("+init=epsg:4326")
+
+# Create empty raster
+dd <- raster()
+extent(dd) <- extent(df)
+# Rasterize mq_evi_mean
+evi_mean <- rasterize(df, dd, res=c(250,250), 'mq_evi_mean')
+evi_cv <- rasterize(df, dd, 'mq_evi_cv')
+evi_dmax <- rasterize(df, dd, 'mq_max')
+
+xxx <- stack(evi_mean, evi_cv, evi_dmax)
+plot(xxx)
+
+
+library(rasterVis)
+library(ggplot2)
+
+pdf
+gplot(evi_mean) +
+    geom_raster(aes(fill = factor(value))) 
+
+pdf(file=paste(di, '/evi_mean.pdf', sep=''), height = 8, width= 10)
+gplot(evi_mean) +
+  geom_raster(aes(fill = factor(value))) +
+  scale_fill_manual(values=c('red','green', 'blue','black'),
+                    'legend',labels = c("1", "2", "3", "4")) + 
+  coord_equal() +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
+dev.off()  
+
+
+
+
+
+mq_evi_meanL
+
+
+# df_puntos <- SpatialPoints(df[,c("lng", "lat")], df[,c("clu")])
+
+
+## Ok a partir de aqui 
+
+# Son las 1.27 de la mañana y estoy hasta los jjj
+# Read centroid of all ndvi data 
+pixel_all <- read.csv(file=paste(di, "/data/geoinfo/coordinates_iv_modis.csv", sep= ""), header = TRUE, sep = ',')
+names(pixel_all) <- c("iv_malla_modi_id", "x", "y")
+coordinates(pixel_all) <- ~x+y
+proj4string(pixel_all) <- CRS("+init=epsg:4326")
+
+
+# Create empty raster
+r <- raster()
+extent(r) <- extent(pixel_all)
+# Rasterize
+myr <- rasterize(pixel_all, r, 'z')
+
+
+
+
+rr <- mask(myr, sn_ll)
+plot(rr)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+plot(myr)
+
+
+# test
+pixel_all$z <- 1
+
+
+r <- rasterize(pixel_all, r, 'z')
+plot(r)
+
+projection(r)
+extent(r) <- extent(pixel_all)
+plot(r)
+
+
+
+pixel_all
+
+pixel_all <- SpatialPointsDataFrame(coords=pixel_all[, c("x","y")], data=pixel_all, 
+                                    proj4string = CRS("+proj=utm +zone=30"))
+
+head(pixel_all)
+
+
+# with a SpatialPointsDataFrame
+vals <- 1:n
+p <- data.frame(xy, name=vals)
+coordinates(p) <- ~x+y
+r <- rasterize(p, r, '', fun=min)
+#r2 <- rasterize(p, r, 'name', fun=max)
+#plot(r, r2, cex=0.5)
+
+
+
+r <- raster()
+
+xx <- rasterize(pixel_all@data[c('x','y')], field=pixel_all@data[c('z')], r)
+
+pixel_all$z <- 1
+p <- pixel_all@data[c('x','y','z')]
+
+ra <- rasterFromXYZ(p, res = c(250,250))
+
+                                      C
+
+proj4string=
+
+# Set projection
+pixel_all <- spTransform(pixel_all, CRS("+init=epsg:23030"))
+
+
+## Read Sierra Nevada limits
+enp <- rgdal::readOGR(dsn=paste(di, "/data/geoinfo/EENNPP/InfGeografica/InfVectorial/Shapes/ED50_30", sep=""),
+                      layer = "EENNPP", verbose = FALSE)
+# Subset limits of SN                      
+sn <- subset(enp, NOMBRE == 'SIERRA NEVADA' & FIGURA == 'Espacio Natural')
+
+# Retain only a field
+sn <- sn[,c('FIGURA')]
+
+# reproject naamp to lat/lon WGS84 ("geographic projection")
+sn_ll <- spTransform(sn, CRS("+proj=longlat"))
+sn_ll <- spTransform(sn_ll, CRS("+init=epsg:4326"))
+
+
+# Extract (Overlay) point within sierranevada 
+# https://cran.r-project.org/web/packages/sp/vignettes/over.pdf 
+# pixel_sn <- pixel_all[!is.na(over(pixel_all,sn_ll)),]
+pixel_sn <- pixel_all[complete.cases(over(pixel_all, sn_ll)), ] 
+pixel_sn$a <- 1
+
+
+ex <- as.data.frame(pixel_sn)[, c("x", "y", "a")]
+
+gridded(pixel_all) <- TRUE
+r <- raster()
+library(raster)
+
+
+f <- rasterize(ex, r)
+
+head(pixel_sn)
+
+pixel_all$a <- 1
+head(pixel_all@data)
+
+p <- pixel_all@data[,c('x','y','a')]
+
+
+myr <- rasterFromXYZ(p)
+r <- raster() 
+
+myr <- rasterize(p, r)
+
+
+
+coordinates(pix_all) <- ~x+y
+xx <- points2grid(pixel_sn)
+
+library(plotKML)
+Rast2 <- vect2rast(pixel_all)
+
+dd <- spDists(pixel_all)
+
+
+
+
+
+
+
+0.678661
+points <- SpatialPoints(s100_ras[,c('x','y')], s100_ras[,c('z')]
+pixels <- SpatialPixelsDataFrame(points, tolerance = 0.916421, points@data)
+raster <- raster(pixels[,'z'])
+
+
+
+
+
+library(maptools)
+coordinates(df) <- ~lng+lat
+xx <- points2grid(df)
+
+
+library(sp)
+library(plotKML)
+
+# Create spatial point dataframe 
+dfsp <- SpatialPointsDataFrame(coords = df[,c("lng", "lat")],
+                               data=df)
+plot(dfsp)
+
+# Convert into 
+pixels <- SpatialPixelsDataFrame(dfsp, tolerance = 0.0678661, dfsp@data)
+
+r <- raster(pixels[,"clu"])
+plot(r)
+
+head(pixels)
+
+vect2rast(df)
+
+
+delmepol <- as(delmepx,"SpatialPolygonsDataFrame")
+> delmepx2 <- SpatialPixelsDataFrame(coordinates(delmepol), delmepol at data)
+> suggested tolerance minimum: 0.000635728
+
+
+df <- as(df, "SpatialGridDataFrame")
+
+
+points <- SpatialPoints(s100_ras[,c('x','y')], s100_ras[,c('z')]
+pixels <- SpatialPixelsDataFrame(points, tolerance = 0.916421, points@data)
+raster <- raster(pixels[,'z'])
+
+
+
+
+
+
+df <- SpatialPixelsDataFrame(coordinates())
+
+grd.pts = SpatialPixels(SpatialPoints(df))
+
+
+auxr <- df [, c("lat", "lng", "clu")]
+names(auxr) <- 
+
+myr <-rasterFromXYZ(auxr)
+
+# Create empty raster
+r <- raster() 
+
+# Specify function 
+extent(r) <- extent(dfsp)
+myr <- rasterize(dfsp, r, "clu", fun='first')
+
+
+
+# VAS POR AQUI CANTINFLAS 
+library(raster)
+
+```
+
